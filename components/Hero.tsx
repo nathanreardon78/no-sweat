@@ -1,7 +1,7 @@
 "use client";
-import Image from 'next/image';
-import { BUTTON_CLASSES, COLORS, FONTS } from '@/constants/constants';
-import { motion } from 'framer-motion';
+import Image from "next/image";
+import { BUTTON_CLASSES, COLORS, FONTS } from "@/constants/constants";
+import { motion } from "framer-motion";
 
 export interface HeroButton {
   label: string;
@@ -17,14 +17,18 @@ interface HeroProps {
 }
 
 export default function Hero({
-  title="Stop the Drip Before It Begins.",
-  subtitle="No Sweat™ is a clear, silica-based spray that blocks condensation on any cup or tumbler—keeping surfaces clean and dry.",
+  title = "Stop the Drip Before It Begins.",
+  subtitle = "No Sweat™ is a clear, silica-based spray that blocks condensation on any cup or tumbler—keeping surfaces clean and dry.",
   buttons,
   videoSrc,
   logoSrc,
 }: HeroProps) {
   return (
-    <section className="relative pt-24 pb-16 md:pt-32 md:pb-20 w-full h-[70vh] md:h-screen flex items-center justify-center overflow-hidden">
+    <section
+      className="relative flex items-center justify-center w-full 
+                 overflow-hidden bg-gradient-to-b from-[#F7FBFD] to-[#FFFFFF]
+                 pt-28 pb-24 md:pt-36 md:pb-28 min-h-[90vh]"
+    >
       {/* Background video */}
       {videoSrc && (
         <video
@@ -36,15 +40,18 @@ export default function Hero({
           playsInline
         />
       )}
+
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#00AEEF]/60 via-[#D9E1E5]/40 to-transparent" />
+
       {/* Animated floating bubbles */}
       <div className="absolute -top-8 left-10 w-32 h-32 bg-[#00AEEF]/20 rounded-full blur-2xl animate-bounce-slow" />
       <div className="absolute bottom-10 right-20 w-24 h-24 bg-[#D9E1E5]/30 rounded-full blur-xl animate-ping-slow" />
 
-      <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 py-12">
-        {/* Main hero text */}
-        <div className="flex-1 text-center md:text-left mb-8 md:mb-0">
+      {/* Content container */}
+      <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between px-6">
+        {/* Text content */}
+        <div className="flex-1 text-center md:text-left mb-12 md:mb-0">
           <h1
             className={`text-4xl md:text-6xl mb-4 ${FONTS.heading}`}
             style={{ color: COLORS.iceWhite }}
@@ -52,7 +59,7 @@ export default function Hero({
             {title}
           </h1>
           <p
-            className={`text-lg md:text-xl mb-8 ${FONTS.body}`}
+            className={`text-lg md:text-xl mb-10 ${FONTS.body}`}
             style={{ color: COLORS.iceWhite }}
           >
             {subtitle}
@@ -71,15 +78,16 @@ export default function Hero({
             ))}
           </div>
         </div>
+
         {/* Logo image */}
         {logoSrc && (
-          <div className="flex-1 flex justify-center md:justify-end">
+          <div className="flex-1 flex justify-center md:justify-end mt-8 md:mt-0">
             <Image
               src={logoSrc}
               alt="No Sweat logo"
               width={220}
               height={220}
-              className="object-contain drop-shadow-lg"
+              className="object-contain drop-shadow-lg rounded-xl"
             />
           </div>
         )}

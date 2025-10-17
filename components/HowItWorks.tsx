@@ -22,9 +22,9 @@ const steps = [
   },
   {
     icon: CheckCircle,
-    title: 'Bead',
+    title: 'No Beads',
     description:
-      'Condensation beads up and rolls off, leaving your hands and surfaces dry.',
+    'Condensation is prevented from forming, so your hands and surfaces stay completely dry.',
   },
 ];
 
