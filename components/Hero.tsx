@@ -24,7 +24,7 @@ export default function Hero({
   logoSrc,
 }: HeroProps) {
   return (
-    <section className="relative w-full h-[70vh] md:h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative pt-24 pb-16 md:pt-32 md:pb-20 w-full h-[70vh] md:h-screen flex items-center justify-center overflow-hidden">
       {/* Background video */}
       {videoSrc && (
         <video
