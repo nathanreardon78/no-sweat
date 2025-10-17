@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     images: [
       {
         // point at your OG image in public/
-        url: '/assets/og-image.png',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'No Sweat product illustration',
