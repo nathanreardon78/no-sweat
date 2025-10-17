@@ -1,6 +1,19 @@
 import Hero from '@/components/Hero';
 import ProductDetail from '@/components/ProductDetail';
 
+
+export const metadata = {
+  title: 'Product – No Sweat™',
+  description: 'Shop No Sweat™: choose from 4 oz, 16 oz or 1 gallon sizes and stop condensation.',
+  openGraph: {
+    images: ['/assets/goodbye_condensation.png'],
+  },
+  twitter: {
+    images: ['/assets/goodbye_condensation.png'],
+  },
+};
+
+
 export default function ProductPage() {
   return (
     <>
@@ -34,7 +47,7 @@ export default function ProductPage() {
           'Apply a second thin coat for best results.',
         ]}
         availableSizes={['4 oz', '16 oz', '1 gallon']}
-        safetySheet="#" // link to PDF if available
+        safetySheet="/doc/No_Sweat_SDS.pdf"
       />
     </>
   );

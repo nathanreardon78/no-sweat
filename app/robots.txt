@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nosweatcoating.com/sitemap.xml

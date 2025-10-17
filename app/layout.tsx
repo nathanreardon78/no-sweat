@@ -1,9 +1,58 @@
+// app/layout.tsx
 import './globals.css';
 import { Montserrat, Open_Sans } from 'next/font/google';
+import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { CartProvider } from '@/components/CartContext';
 import FloatingCartButton from '@/components/FloatingCartButton';
+
+const siteUrl = 'https://nosweatcoating.com';
+
+export const metadata: Metadata = {
+  // Required for generating absolute URLs in OG tags
+  metadataBase: new URL(siteUrl),
+  title: {
+    template: '%s | No Sweat™',
+    default: 'No Sweat™ – Stops Condensation',
+  },
+  description:
+    'No Sweat™ is a clear, silica‑based spray that blocks condensation on any cup or tumbler, keeping surfaces clean and dry.',
+  keywords: [
+    'No Sweat',
+    'condensation spray',
+    'silica coating',
+    'drinkware',
+    'anti‑sweat',
+  ],
+  openGraph: {
+    title: 'No Sweat™ – Stops Condensation',
+    description:
+      'Discover No Sweat™, the clear silica‑based spray that prevents condensation on any cup or tumbler.',
+    url: siteUrl,
+    siteName: 'No Sweat™',
+    images: [
+      {
+        // point at your OG image in public/
+        url: '/assets/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'No Sweat product illustration',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'No Sweat™ – Stops Condensation',
+    description:
+      'Prevent cup condensation with No Sweat™, a clear silica‑based micro‑layer spray.',
+    images: ['/assets/goodbye_condensation.png'],
+  },
+  robots: { index: true, follow: true },
+};
+
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -16,11 +65,6 @@ const openSans = Open_Sans({
   variable: '--font-opensans',
 });
 
-export const metadata = {
-  title: 'No Sweat™ | Stops Condensation',
-  description:
-    'No Sweat™ is a clear, silica-based spray that blocks condensation on any cup or tumbler—keeping surfaces clean and dry.',
-};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
