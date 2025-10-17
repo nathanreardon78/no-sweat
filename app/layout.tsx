@@ -7,7 +7,7 @@ import Footer from '@/components/Footer';
 import { CartProvider } from '@/components/CartContext';
 import FloatingCartButton from '@/components/FloatingCartButton';
 
-const siteUrl = 'https://nosweatcoating.com';
+const siteUrl = 'https://nosweatsealer.com';
 
 export const metadata: Metadata = {
   // Required for generating absolute URLs in OG tags

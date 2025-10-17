@@ -377,10 +377,10 @@ export default function PrivacyPage() {
               oversee compliance. Users may exercise their rights or submit
               complaints via email at&nbsp;
               <a
-                href="mailto:privacy@nosweatcoating.com"
+                href="mailto:privacy@nosweatsealer.com"
                 className="text-[#00AEEF] underline"
               >
-                privacy@nosweatcoating.com
+                privacy@nosweatsealer.com
               </a>
               &nbsp;or by mail to our registered office in Florida, USA.
             </p>
