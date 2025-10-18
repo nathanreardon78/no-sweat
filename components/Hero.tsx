@@ -97,7 +97,6 @@ export default function Hero({
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce text-white/80 text-sm">
         ↓ Scroll to explore
       </div>
-      <div className="absolute bottom-0 w-full h-15 bg-gradient-to-b from-transparent to-[#F7FBFD]" />
 
     </section>
   );

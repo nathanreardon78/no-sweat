@@ -20,6 +20,8 @@ export default function HomePage() {
         videoSrc="/assets/drip-placeholder.mp4"
         logoSrc="/assets/logo_red_cup.png"
       />
+      <div className="absolute bottom-0 w-full h-15 bg-gradient-to-b from-transparent to-[#F7FBFD]" />
+      
       <HowItWorks />
       <UseCases />
       {/* Technology section integrated into home page */}
