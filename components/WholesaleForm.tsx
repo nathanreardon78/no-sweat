@@ -7,6 +7,7 @@ interface FormState {
   email: string;
   company: string;
   units: string;
+  message: string;
 }
 
 export default function WholesaleForm() {
@@ -15,9 +16,10 @@ export default function WholesaleForm() {
     email: '',
     company: '',
     units: '',
+    message: '',
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -25,7 +27,7 @@ export default function WholesaleForm() {
     e.preventDefault();
     // In a real app, you’d submit this data to a backend or service.
     alert('Thank you for your inquiry!');
-    setFormData({ name: '', email: '', company: '', units: '' });
+    setFormData({ name: '', email: '', company: '', units: '', message: '' });
   };
 
   return (
@@ -97,6 +99,23 @@ export default function WholesaleForm() {
           type="number"
           value={formData.units}
           onChange={handleChange}
+          className="w-full p-3 border border-gray-300 rounded-md"
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="message"
+          className={`${FONTS.body} block mb-1`}
+          style={{ color: COLORS.jetBlack }}
+        >
+          Additional Message
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+
           className="w-full p-3 border border-gray-300 rounded-md"
         />
       </div>

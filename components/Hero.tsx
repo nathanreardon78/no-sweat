@@ -24,6 +24,7 @@ export default function Hero({
   logoSrc,
 }: HeroProps) {
   return (
+
     <section
       className="relative flex items-center justify-center w-full 
                  overflow-hidden bg-gradient-to-b from-[#F7FBFD] to-[#FFFFFF]
@@ -42,7 +43,7 @@ export default function Hero({
       )}
 
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#00AEEF]/60 via-[#D9E1E5]/40 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-[#00AEEF]/40 to-transparent md:from-[#00AEEF]/60" />
 
       {/* Animated floating bubbles */}
       <div className="absolute -top-8 left-10 w-32 h-32 bg-[#00AEEF]/20 rounded-full blur-2xl animate-bounce-slow" />
@@ -85,13 +86,19 @@ export default function Hero({
             <Image
               src={logoSrc}
               alt="No Sweat logo"
-              width={220}
-              height={220}
-              className="object-contain drop-shadow-lg rounded-xl"
+              width={160}
+              height={160}
+              className="object-contain drop-shadow-lg md:w-[220px] md:h-[220px]"
             />
+
           </div>
         )}
       </div>
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce text-white/80 text-sm">
+        ↓ Scroll to explore
+      </div>
+      <div className="absolute bottom-0 w-full h-15 bg-gradient-to-b from-transparent to-[#F7FBFD]" />
+
     </section>
   );
 }
