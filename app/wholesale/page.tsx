@@ -14,7 +14,7 @@ export default function WholesalePage() {
       />
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-3xl mx-auto">
-          <h2 className={`text-2xl mb-4`} style={{ color: COLORS.jetBlack }}>Wholesale Inquiry</h2>
+          
           <WholesaleForm />
         </div>
       </section>

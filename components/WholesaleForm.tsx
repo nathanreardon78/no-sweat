@@ -35,7 +35,7 @@ export default function WholesaleForm() {
     setError("");
     setSuccess(false);
 
-    // 🕵️‍♂️ Honeypot check: if filled, assume bot
+    //  Honeypot check: if filled, assume bot
     if (formData.hiddenField) {
       console.warn("Bot detected, ignoring submission.");
       return;
@@ -44,7 +44,7 @@ export default function WholesaleForm() {
     setLoading(true);
     try {
       const res = await fetch(
-        "https://no-sweat-api.onrender.com/api/wholesale-inquiry/",
+        `${process.env.NEXT_PUBLIC_API_URL}wholesale-inquiry/`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
