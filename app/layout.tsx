@@ -73,7 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <CartProvider>
           <script
             src="https://d3qiklq6xff0my.cloudfront.net/popup.js"
-            data-site="clientdomain.com"
+            data-site="nosweatsealer.com"
             data-theme="light"
             data-color="#00aaff"
             data-background="#1e1e1e"
