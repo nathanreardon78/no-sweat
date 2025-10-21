@@ -75,10 +75,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             src="https://d3qiklq6xff0my.cloudfront.net/popup.js"
             data-site="nosweatsealer.com"
             data-theme="light"
-            data-color="#00aaff"
-            data-background="#1e1e1e"
-            data-text-color="#ffffff"
-            data-overlay-color="rgba(0, 0, 0, 1)"
             data-delay="2000"
             defer
           ></script>
