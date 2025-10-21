@@ -7,7 +7,7 @@ import { XCircle } from "lucide-react";
 
 export default function CancelPage() {
     return (
-        <section className="flex flex-col items-center justify-center h-screen text-center px-6">
+        <section className="flex flex-col items-center justify-center h-screen text-center px-6" style={{ backgroundColor: COLORS.iceWhite }}>
             <XCircle size={80} className="text-red-500 mb-6" />
             <h1 className={`text-3xl mb-4 ${FONTS.heading}`} style={{ color: COLORS.jetBlack }}>
                 Payment Cancelled
