@@ -71,6 +71,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang='en' className={`${montserrat.variable} ${openSans.variable}`}>
       <body className='bg-[#ffffff] text-[#111111] font-[var(--font-opensans)] flex flex-col min-h-screen'>
         <CartProvider>
+          <script
+            src="https://d3qiklq6xff0my.cloudfront.net/popup.js"
+            data-site="clientdomain.com"
+            data-theme="light"
+            data-color="#00aaff"
+            data-background="#1e1e1e"
+            data-text="#ffffff"
+            data-overlay="rgba(0, 0, 0, 0.7)"
+            data-delay="2000"
+            defer
+          ></script>
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
