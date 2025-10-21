@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useCart } from "./CartContext";
 import { COLORS, FONTS, BUTTON_CLASSES } from "@/constants/constants";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { loadStripe } from "@stripe/stripe-js";
 
 export interface ProductDetailProps {
     id: string;
@@ -33,22 +32,18 @@ export default function ProductDetail({
     const [quantity, setQuantity] = useState(1);
     const [loading, setLoading] = useState(false);
 
-    const prevImage = () =>
-        setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
-    const nextImage = () =>
-        setCurrentImage((prev) => (prev + 1) % images.length);
+    const prevImage = () => setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+    const nextImage = () => setCurrentImage((prev) => (prev + 1) % images.length);
 
     const handleAddToCart = () => {
         addToCart({ id: `${id}-${selectedSize}`, name, size: selectedSize }, quantity);
     };
 
-    const normalize = (text: string) =>
-        text.replace(/\u00a0/g, " ").trim();
+    const normalize = (text: string) => text.replace(/\u00a0/g, " ").trim();
 
     const handleCheckout = async () => {
         try {
             setLoading(true);
-
             const payload = {
                 items: [
                     {
@@ -59,31 +54,17 @@ export default function ProductDetail({
                 ],
             };
 
-            const resp = await fetch(
-                "http://localhost:8000/api/create-checkout-session/",
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload),
-                }
-            );
+            const resp = await fetch("https://api.nosweatsealer.com/api/create-checkout-session/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            });
 
             const data = await resp.json();
-            if (!resp.ok || !data.sessionId)
-                throw new Error(data.error || "Failed to create Stripe session");
+            if (!resp.ok || !data.checkoutUrl) throw new Error(data.error || "Failed to create checkout session");
 
-            const stripe = await loadStripe(
-                process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ||
-                "pk_test_51PcjKqLFE9BMR2wqGHeEmbTLifZIH9p9y6GLDDzXAvFEq0I2g2IX3J4ybyK8z0VnfjSYtBvl55baMxahKiA2M3HF00ZrrPNET2"
-            );
-            if (!stripe) throw new Error("Stripe failed to initialize");
-
-            // redirectToCheckout may not be present on the Stripe type in some @stripe/stripe-js versions;
-            // cast to any to call it at runtime.
-            const { error } = await (stripe as any).redirectToCheckout({
-                sessionId: data.sessionId,
-            });
-            if (error) throw error;
+            // Simply redirect to Stripe checkout URL
+            window.location.href = data.checkoutUrl;
         } catch (err: any) {
             console.error("Checkout error:", err);
             alert(err.message || "Unable to start checkout.");
@@ -92,18 +73,13 @@ export default function ProductDetail({
         }
     };
 
-
     return (
         <section className="bg-white py-16 px-4 sm:px-6 lg:px-8 pt-20">
             <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
                 {/* Carousel */}
                 <div className="relative flex flex-col items-center">
                     <div className="relative w-full h-72 md:h-96 bg-gray-100 rounded-xl overflow-hidden flex items-center justify-center">
-                        <img
-                            src={images[currentImage]}
-                            alt={`${name} image ${currentImage + 1}`}
-                            className="max-h-full object-contain"
-                        />
+                        <img src={images[currentImage]} alt={`${name} image ${currentImage + 1}`} className="max-h-full object-contain" />
                         {images.length > 1 && (
                             <>
                                 <button
@@ -123,19 +99,6 @@ export default function ProductDetail({
                             </>
                         )}
                     </div>
-                    {images.length > 1 && (
-                        <div className="flex space-x-2 mt-4">
-                            {images.map((imgSrc, idx) => (
-                                <button
-                                    key={idx}
-                                    onClick={() => setCurrentImage(idx)}
-                                    className={`w-16 h-16 rounded-md overflow-hidden border-2 ${idx === currentImage ? "border-[#00AEEF]" : "border-transparent"}`}
-                                >
-                                    <img src={imgSrc} alt="thumbnail" className="w-full h-full object-cover" />
-                                </button>
-                            ))}
-                        </div>
-                    )}
                 </div>
 
                 {/* Details */}
@@ -147,7 +110,7 @@ export default function ProductDetail({
                         {description}
                     </p>
 
-                    {/* Size selector */}
+                    {/* Size */}
                     <div className="mb-4 flex items-center space-x-2">
                         <label className={FONTS.body} style={{ color: COLORS.jetBlack }}>
                             Size:
@@ -166,7 +129,7 @@ export default function ProductDetail({
                         </select>
                     </div>
 
-                    {/* Quantity selector */}
+                    {/* Quantity */}
                     <div className="mb-4 flex items-center space-x-2">
                         <label className={FONTS.body} style={{ color: COLORS.jetBlack }}>
                             Quantity:
@@ -238,6 +201,7 @@ export default function ProductDetail({
                             Safety Data Sheet
                         </a>
                     )}
+
                 </div>
             </div>
         </section>
